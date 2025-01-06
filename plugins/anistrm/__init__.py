@@ -77,6 +77,7 @@ class ANiStrm(_PluginBase):
     _onlyonce = False
     _fulladd = False
     _storageplace = None
+    _openanimirror=None
 
     # 定时器
     _scheduler: Optional[BackgroundScheduler] = None
@@ -91,6 +92,7 @@ class ANiStrm(_PluginBase):
             self._onlyonce = config.get("onlyonce")
             self._fulladd = config.get("fulladd")
             self._storageplace = config.get("storageplace")
+            self._openanimirror= config.get("openanimirror")
             # 加载模块
         if self._enabled or self._onlyonce:
             # 定时服务
@@ -131,7 +133,7 @@ class ANiStrm(_PluginBase):
 
     @retry(Exception, tries=3, logger=logger, ret=[])
     def get_current_season_list(self) -> List:
-        url = f'https://openani.an-i.workers.dev/{self.__get_ani_season()}/'
+        url = f'https://{self._openanimirror}/{self.__get_ani_season()}/'
 
         rep = RequestUtils(ua=settings.USER_AGENT if settings.USER_AGENT else None,
                            proxies=settings.PROXY if settings.PROXY else None).post(url=url)
@@ -157,13 +159,13 @@ class ANiStrm(_PluginBase):
             # 链接
             link = DomUtils.tag_value(item, "link", default="")
             rss_info['title'] = title
-            rss_info['link'] = link.replace("resources.ani.rip", "openani.an-i.workers.dev")
+            rss_info['link'] = link.replace("resources.ani.rip", "{self._openanimirror}")
             ret_array.append(rss_info)
         return ret_array
 
     def __touch_strm_file(self, file_name, file_url: str = None) -> bool:
         if not file_url:
-            src_url = f'https://openani.an-i.workers.dev/{self._date}/{file_name}?d=true'
+            src_url = f'https://{self._openanimirror}/{self._date}/{file_name}?d=true'
         else:
             src_url = file_url
         file_path = f'{self._storageplace}/{file_name}.strm'
@@ -367,7 +369,7 @@ class ANiStrm(_PluginBase):
             "fulladd": False,
             "storageplace": '/downloads/strm',
             "cron": "*/20 22,23,0,1 * * *",
-            "openanimirror": "",
+            "openanimirror": "openani.an-i.workers.dev",
         }
 
     def __update_config(self):
@@ -377,7 +379,7 @@ class ANiStrm(_PluginBase):
             "enabled": self._enabled,
             "fulladd": self._fulladd,
             "storageplace": self._storageplace,
-            "storageplace"
+            "openanimirror": self._openanimirror,
         })
 
     def get_page(self) -> List[dict]:
