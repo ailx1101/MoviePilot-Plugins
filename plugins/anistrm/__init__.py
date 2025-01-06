@@ -58,9 +58,9 @@ class ANiStrm(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/honue/MoviePilot-Plugins/main/icons/anistrm.png"
     # 插件版本
-    plugin_version = "2.4.2"
+    plugin_version = "2.4.2-1"
     # 插件作者
-    plugin_author = "honue"
+    plugin_author = "honue,ailx1101"
     # 作者主页
     author_url = "https://github.com/honue"
     # 插件配置项ID前缀
@@ -304,7 +304,25 @@ class ANiStrm(_PluginBase):
                                         }
                                     }
                                 ]
-                            }
+                            },
+                            # 使用openani镜像站点
+                            {
+                                'component': 'VCol',
+                                'props': {
+                                    'cols': 12,
+                                    'md': 4
+                                },
+                                'content': [
+                                    {
+                                        'component': 'VTextField',
+                                        'props': {
+                                            'model': 'openanimirror',
+                                            'label': 'openani镜像站点',
+                                            'placeholder': '使用openani镜像站点'
+                                        }
+                                    }
+                                ]
+                            }, 
                         ]
                     },
                     {
@@ -349,6 +367,7 @@ class ANiStrm(_PluginBase):
             "fulladd": False,
             "storageplace": '/downloads/strm',
             "cron": "*/20 22,23,0,1 * * *",
+            "openanimirror": "",
         }
 
     def __update_config(self):
@@ -358,6 +377,7 @@ class ANiStrm(_PluginBase):
             "enabled": self._enabled,
             "fulladd": self._fulladd,
             "storageplace": self._storageplace,
+            "storageplace"
         })
 
     def get_page(self) -> List[dict]:
