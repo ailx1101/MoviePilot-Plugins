@@ -159,7 +159,7 @@ class ANiStrm(_PluginBase):
             # 链接
             link = DomUtils.tag_value(item, "link", default="")
             rss_info['title'] = title
-            rss_info['link'] = link.replace("resources.ani.rip", "{self._openanimirror}")
+            rss_info['link'] = link.replace("resources.ani.rip", self._openanimirror)
             ret_array.append(rss_info)
         return ret_array
 
