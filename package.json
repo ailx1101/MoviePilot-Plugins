@@ -1,0 +1,11 @@
+{
+  "batchRenameSeries": {
+    "name": "批量剧集重命名",
+    "description": "自动按文件夹名和季集信息批量重命名视频文件，适配 MoviePilot 识别规则。",
+    "labels": "文件整理",
+    "version": "1.1.0",
+    "icon": "rename",
+    "author": "shzlx",
+    "level": 1
+  }
+}
