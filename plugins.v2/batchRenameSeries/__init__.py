@@ -19,7 +19,7 @@ class BatchRenameSeriesPlugin:
         self.plugin_info = PluginInfo(
             name="批量剧集重命名",
             author="shzlx",
-            version="1.1.0",
+            version="1.1.1",
             description="自动按文件夹名+季集重命名剧集文件，支持Web界面和预览模式"
         )
         # 注册Web界面点击事件（与package.json中button的click对应）
@@ -27,7 +27,7 @@ class BatchRenameSeriesPlugin:
 
     def start(self):
         """插件启动"""
-        logger.info("批量剧集重命名插件（v1.1.0）已启动，支持Web界面和预览模式")
+        logger.info("批量剧集重命名插件已启动，支持Web界面和预览模式")
 
     def stop(self):
         """插件停止"""
