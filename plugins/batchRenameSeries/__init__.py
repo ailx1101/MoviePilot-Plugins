@@ -23,20 +23,20 @@ class BatchRenameSeries(_PluginBase):
     # 插件版本
     plugin_version = "1.1.1"
     # 插件作者
-    plugin_author = "shzlx"
+    plugin_author = "ailx1101"
     # 作者主页
-    author_url = "https://github.com/shzlx"
+    author_url = "https://github.com/ailx1101"
     # 插件配置项ID前缀
     plugin_config_prefix = "batchRenameSeries_"
     # 加载顺序
-    plugin_order = 15
+    plugin_order = 11
     # 可使用的用户级别
-    auth_level = 2
+    auth_level = 1
 
     def __init__(self):
         self.plugin_info = PluginInfo(
             name="批量剧集重命名",
-            author="shzlx",
+            author="ailx1101",
             version="1.1.1",
             description="自动按文件夹名+季集重命名剧集文件，支持Web界面和预览模式"
         )
