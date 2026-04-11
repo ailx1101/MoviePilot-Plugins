@@ -1,7 +1,7 @@
 import os
 import re
 from typing import Dict, List, Optional
-
+from app.plugins import _PluginBase
 from app.core.event import EventManager, Event
 from app.log import logger
 from app.schemas import PluginInfo, PluginResponse
@@ -9,11 +9,29 @@ from app.schemas import PluginInfo, PluginResponse
 __plugin_name__ = "batch_rename_series"
 
 
-class BatchRenameSeriesPlugin:
+class BatchRenameSeries(_PluginBase):
     """
     批量剧集重命名插件（带Web界面+预览模式）
     功能：1. Web可视化操作 2. 预览模式（不实际修改）3. 批量重命名为MP识别格式
     """
+    # 插件名称
+    plugin_name = "BatchRenameSeries"
+    # 插件描述
+    plugin_desc = "批量剧集重命名插件"
+    # 插件图标
+    plugin_icon = "https://raw.githubusercontent.com/honue/MoviePilot-Plugins/main/icons/anistrm.png"
+    # 插件版本
+    plugin_version = "1.1.1"
+    # 插件作者
+    plugin_author = "shzlx"
+    # 作者主页
+    author_url = "https://github.com/shzlx"
+    # 插件配置项ID前缀
+    plugin_config_prefix = "batchRenameSeries_"
+    # 加载顺序
+    plugin_order = 15
+    # 可使用的用户级别
+    auth_level = 2
 
     def __init__(self):
         self.plugin_info = PluginInfo(
